@@ -1,0 +1,24 @@
+name: Frontend Deployment
+on:
+  push:
+    branches:
+      - [cite_start]main  # Hoặc 'master' tùy theo tên nhánh chính của bạn 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Deploy to Vercel
+        # Lệnh này báo cho Vercel biết để tự động cập nhật code mới
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm
