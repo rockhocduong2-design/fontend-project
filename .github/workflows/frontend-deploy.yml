@@ -2,7 +2,7 @@ name: Frontend Deployment
 on:
   push:
     branches:
-      - [cite_start]main  # Hoặc 'master' tùy theo tên nhánh chính của bạn 
+      - main
 
 jobs:
   deploy:
@@ -20,5 +20,4 @@ jobs:
         run: npm install --global vercel
 
       - name: Deploy to Vercel
-        # Lệnh này báo cho Vercel biết để tự động cập nhật code mới
         run: vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm
